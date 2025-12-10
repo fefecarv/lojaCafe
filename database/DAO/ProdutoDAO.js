@@ -46,12 +46,5 @@ class ProdutoDAO{
     }
 }
 
-/**
- * o async vai criar um algoritmo assincrono, onde cada passo será executado após a finalização do
- * anterior. 
- * exemplo: na busca pelo id de um usuário em um banco populado, normalmente o tempo de resposta do 
- * banco é superior a um segundo e a atribuição do valor à variável é imediato, o que faria com que o 
- * js atribuísse 'undefined' e não o dado do banco de dados.
- */
 
 
