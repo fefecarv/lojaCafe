@@ -10,37 +10,37 @@ class ClienteDAO{
         return resultado;
     }
 
-    async buscarCodigo(codigoProduto, codigoCliente){
-        const sql = "select * from Pedido where codigoProduto = ? and codigoCliente = ?";
+    async buscarCodigo(codigo){
+        const sql = "SELECT * FROM cliente WHERE codigo = ?";
     
-        const [resultado] = await db.query(sql, [codigoProduto, codigoCliente]);
+        const [resultado] = await db.query(sql, [codigo]);
     
         return resultado;
     }
 
-    async criar(codigoProduto, codigoCliente, status, cep){
-        const sql = "insert into Produto(codigoProduto, codigoCliente, status, cep) values(?, ?, ?, ?)";
+    async criar(codigo, cpf, nome, senha, endereco, email, cep){
+        const sql = "INSERT INTO cliente(codigo, cpf, nome, senha, endereco, email, cep) values(?, ?, ?, ?, ?, ?, ?)";
     
-        const [resultado] = await db.query(sql, [codigoProduto, codigoCliente, status, cep]);
+        const [resultado] = await db.query(sql, [codigo, cpf, nome, senha, endereco, email, cep]);
     
         return resultado;
     } 
 
-    async update(codigoProduto, codigoCliente, dados) {
+    async update(codigo, dados) {
         const columns = Object.keys(dados).map(key => `${key} = ?`).join(', ');
-        const values = [...Object.values(dados), codigoProduto, codigoCliente];
+        const values = [...Object.values(dados), codigo];
 
-        const sql = `UPDATE pedido SET ${columns} WHERE codigoProduto = ? AND codigoCliente = ?`;
+        const sql = `UPDATE cliente SET ${columns} WHERE codigo = ?`;
 
         const [resultado] = await db.query(sql, values);
         
-        return resultado.affectedRows > 0; // linhas afetadas no banco de dados
+        return resultado.affectedRows > 0; 
     }
 
-    async delete(codigoProduto, codigoCliente){
-        const sql = "delete from pedido where codigoProduto = ? AND codigoCliente = ?";
+    async delete(codigo){
+        const sql = "DELETE FROM cliente WHERE codigo = ?"; // = ? evita sql injection 
     
-        const [resultado] = await db.query(sql, [codigoProduto, codigoCliente]);
+        const [resultado] = await db.query(sql, [codigo]);
     
         return resultado.affectedRows > 0;
     }

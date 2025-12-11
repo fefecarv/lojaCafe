@@ -18,10 +18,10 @@ class ProdutoDAO{
         return resultado;
     }
 
-    async criarProduto(nome, preco, fotolink, descricao, categoria){
-        const sql = "insert into Produto(nome, preco, fotolink, descricao, categoria) values(?, ?, ?, ?, ?)";
+    async criarProduto(nome, preco, fotolink, descricao, categoria, unidade){
+        const sql = "insert into Produto(nome, preco, fotolink, descricao, categoria, unidade) values(?, ?, ?, ?, ?, ?)";
     
-        const [resultado] = await db.query(sql, [nome, preco, fotolink, descricao, categoria]);
+        const [resultado] = await db.query(sql, [nome, preco, fotolink, descricao, categoria, unidade]);
     
         return resultado;
     } 
